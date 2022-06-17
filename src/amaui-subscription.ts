@@ -84,6 +84,8 @@ class AmauiSubscription implements IAmauiSubscription {
   }
 
   public map(value_?: any): any {
+    if (!this.methods.length) return;
+
     let value: any = value_;
 
     for (const method of this.methods) value = Try(() => method(value));

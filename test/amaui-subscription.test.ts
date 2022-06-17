@@ -325,7 +325,7 @@ group('@amaui/subscription', () => {
         const value = [1];
 
         const method = (v: any) => v[0]++;
-        const method1 = () => { throw new Error('a') };
+        const method1 = () => { throw new Error('a'); };
 
         amauisubscription.subscribe(method);
         amauisubscription.subscribe(method1);
@@ -345,7 +345,7 @@ group('@amaui/subscription', () => {
       const value = [1];
 
       const method = (v: any) => v[0]++;
-      const method1 = () => { throw new Error('a') };
+      const method1 = () => { throw new Error('a'); };
 
       amauisubscription.subscribe(method);
       amauisubscription.subscribe(method1);
@@ -372,7 +372,7 @@ group('@amaui/subscription', () => {
         const amauisubscription = new window.AmauiSubscription();
 
         const method = (v: any) => v + 1;
-        const method1 = () => { throw new Error('a') };
+        const method1 = () => { throw new Error('a'); };
 
         amauisubscription.subscribe(method);
         amauisubscription.subscribe(method1);
@@ -385,7 +385,7 @@ group('@amaui/subscription', () => {
       const amauisubscription = new AmauiSubscription();
 
       const method = (v: any) => v + 1;
-      const method1 = () => { throw new Error('a') };
+      const method1 = () => { throw new Error('a'); };
 
       amauisubscription.subscribe(method);
       amauisubscription.subscribe(method1);

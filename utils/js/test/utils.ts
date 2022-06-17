@@ -111,6 +111,18 @@ export const evaluate = async (
 
     const window = await browser.page.evaluateHandle(() => window);
 
+    // Remove prod scripts
+    await browser.page.evaluateHandle((window: Window) => {
+      const scripts = window.document.getElementsByTagName('script');
+
+      Array.from(scripts).filter(script => script.src.indexOf('localhost') > -1).forEach(script => script.parentElement.removeChild(script));
+    }, window);
+
+    // Add prod scripts
+    const paths = (await fg('build/umd/*.prod.min.js', { onlyFiles: true }));
+
+    for (const value of paths) await browser.page.addScriptTag({ url: value });
+
     const args = options.arguments?.length ? [window, ...options.arguments] : window;
 
     if (options.pre) await browser.page.evaluateHandle(options.pre, args);
