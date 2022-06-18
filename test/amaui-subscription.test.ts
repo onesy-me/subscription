@@ -3,18 +3,11 @@ import { assert } from '@amaui/test';
 
 import { equalDeep } from '@amaui/utils';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers } from '../utils/js/test/utils';
+import { evaluate } from '../utils/js/test/utils';
 
 import AmauiSubscription from '../src';
 
 group('@amaui/subscription', () => {
-  let browsers: IBrowsers;
-
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-  });
 
   to('value', async () => {
     const values_ = [
@@ -29,7 +22,7 @@ group('@amaui/subscription', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -52,7 +45,7 @@ group('@amaui/subscription', () => {
       amauisubscription.subscribe(method2);
 
       return amauisubscription.length;
-    }, { browsers });
+    });
 
     const amauisubscription = new AmauiSubscription();
 
@@ -106,7 +99,7 @@ group('@amaui/subscription', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -159,7 +152,7 @@ group('@amaui/subscription', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -214,7 +207,7 @@ group('@amaui/subscription', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -274,7 +267,7 @@ group('@amaui/subscription', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -297,7 +290,7 @@ group('@amaui/subscription', () => {
       const values_ = amauisubscription.map(1);
 
       return values_;
-    }, { browsers });
+    });
 
     const amauisubscription = new AmauiSubscription();
 
@@ -338,7 +331,7 @@ group('@amaui/subscription', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
 
       const amauisubscription = new AmauiSubscription();
 
@@ -380,7 +373,7 @@ group('@amaui/subscription', () => {
         const values_ = amauisubscription.map(1);
 
         return values_;
-      }, { browsers });
+      });
 
       const amauisubscription = new AmauiSubscription();
 
@@ -452,7 +445,7 @@ group('@amaui/subscription', () => {
           values_.push(amauisubscription.value === v);
 
           return values_;
-        }, { browsers });
+        });
         const valueNode = values_;
         const values = [valueNode, ...valueBrowsers];
 
@@ -507,7 +500,7 @@ group('@amaui/subscription', () => {
           ];
 
           return values_;
-        }, { browsers });
+        });
         const valueNode = values_;
         const values = [valueNode, ...valueBrowsers];
 
@@ -570,7 +563,7 @@ group('@amaui/subscription', () => {
           ];
 
           return values_;
-        }, { browsers });
+        });
         const valueNode = values_;
         const values = [valueNode, ...valueBrowsers];
 
@@ -632,7 +625,7 @@ group('@amaui/subscription', () => {
           ];
 
           return values_;
-        }, { browsers });
+        });
         const valueNode = values_;
         const values = [valueNode, ...valueBrowsers];
 
