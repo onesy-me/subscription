@@ -1,4 +1,4 @@
-import { is, merge, copy, Try } from '@amaui/utils';
+import { is, copy, Try } from '@amaui/utils';
 import { TMethod } from '@amaui/models';
 
 interface IOptions {
@@ -48,7 +48,7 @@ class AmauiSubscription implements IAmauiSubscription {
     public value?: any,
     public options: IOptions = optionsDefault
   ) {
-    this.options = merge(options, optionsDefault);
+    this.options = { ...this.options, ...optionsDefault };
   }
 
   public get length() { return this.methods.length; }
