@@ -1,4 +1,6 @@
-import { is, copy, Try } from '@amaui/utils';
+import is from '@amaui/utils/is';
+import copy from '@amaui/utils/copy';
+import Try from '@amaui/utils/Try';
 import { TMethod } from '@amaui/models';
 
 interface IOptions {
@@ -46,9 +48,9 @@ class AmauiSubscription implements IAmauiSubscription {
 
   public constructor(
     public value?: any,
-    public options: IOptions = optionsDefault
+    public options: IOptions = {}
   ) {
-    this.options = { ...this.options, ...optionsDefault };
+    this.options = { ...optionsDefault, ...this.options };
   }
 
   public get length() { return this.methods.length; }
@@ -63,7 +65,7 @@ class AmauiSubscription implements IAmauiSubscription {
 
     // Pre
     // Value might be of simple type so we have to assign a new value to the value
-    if (is('function', this.options.emit.pre.method)) this.options.emit.pre.method(...value);
+    if (is('function', this.options.emit.pre?.method)) this.options.emit.pre.method(...value);
 
     this.methods.map(method => {
       // Whether to send a copied value version or not,
@@ -76,7 +78,7 @@ class AmauiSubscription implements IAmauiSubscription {
 
     // Post
     // Value might be of simple type so we have to assign a new value to the value
-    if (is('function', this.options.emit.post.method)) this.options.emit.post.method(...value);
+    if (is('function', this.options.emit.post?.method)) this.options.emit.post.method(...value);
   }
 
   public forEach(...args: any[]): void {
