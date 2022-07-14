@@ -1,6 +1,6 @@
 import is from '@amaui/utils/is';
 import copy from '@amaui/utils/copy';
-import Try from '@amaui/utils/Try';
+import Try from '@amaui/utils/try';
 import { TMethod } from '@amaui/models';
 
 interface IOptions {
