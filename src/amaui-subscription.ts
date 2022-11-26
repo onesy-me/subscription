@@ -67,14 +67,17 @@ class AmauiSubscription implements IAmauiSubscription {
     // Value might be of simple type so we have to assign a new value to the value
     if (is('function', this.options.emit.pre?.method)) this.options.emit.pre.method(...value);
 
-    this.methods.map(method => {
-      // Whether to send a copied value version or not,
-      // it might be useful since if value is of reference type,
-      // methods in the beginning might update the value,
-      // and other following methods wouldn't get the
-      // same value as it was sent to the first method.
-      if (is('function', method)) method(...(this.options.emit.copy ? copy(value) : value));
-    });
+    // Whether to send a copied value version or not,
+    // it might be useful since if value is of reference type,
+    // methods in the beginning might update the value,
+    // and other following methods wouldn't get the
+    // same value as it was sent to the first method.
+    const methodValue = this.options.emit.copy ? copy(value) : value;
+
+    const methods = this.methods.filter(method => is('function', method));
+
+    // Emit to methods
+    for (const method of methods) Try(() => method(...methodValue));
 
     // Post
     // Value might be of simple type so we have to assign a new value to the value
@@ -96,11 +99,11 @@ class AmauiSubscription implements IAmauiSubscription {
   }
 
   public subscribe(method: TMethod): void {
-    if (this.methods.indexOf(method) === -1) this.methods.push(method);
+    if (is('function', method) && this.methods.indexOf(method) === -1) this.methods.push(method);
   }
 
   public unsubscribe(method: TMethod): void {
-    if (this.methods.indexOf(method) > -1) {
+    if (is('function', method) && this.methods.indexOf(method) > -1) {
       const index = this.methods.findIndex(method_ => method_ === method);
 
       if (index > -1) this.methods.splice(index, 1);
