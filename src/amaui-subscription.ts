@@ -3,6 +3,10 @@ import copy from '@amaui/utils/copy';
 import Try from '@amaui/utils/try';
 import { TMethod } from '@amaui/models';
 
+interface ISubscribe {
+  unsubscribe: () => void;
+}
+
 interface IOptions {
   emit?: {
     priorValue?: boolean;
@@ -98,8 +102,16 @@ class AmauiSubscription implements IAmauiSubscription {
     return value;
   }
 
-  public subscribe(method: TMethod): void {
+  public subscribe(method: TMethod): ISubscribe {
     if (is('function', method) && this.methods.indexOf(method) === -1) this.methods.push(method);
+
+    const instance = this;
+
+    return {
+      unsubscribe: () => {
+        instance.unsubscribe(method);
+      }
+    };
   }
 
   public unsubscribe(method: TMethod): void {

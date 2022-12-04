@@ -83,6 +83,11 @@
   amauiSub.unsubscribe(method);
 
   amauiSub.unsubscribe(method1);
+
+  // or with anonymous method
+  const subscription = amauiSub.subscribe(value => console.log(value));
+
+  subscription.unsubscribe();
 ```
 
 ### Dev
