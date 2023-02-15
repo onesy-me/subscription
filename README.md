@@ -39,11 +39,7 @@
 ### Add
 
 ```sh
-  // yarn
   yarn add @amaui/subscription
-
-  // npm
-  npm install @amaui/subscription
 ```
 
 ### Use
