@@ -1,1 +1,1 @@
-export { default } from './amaui-subscription';
+export { default } from './AmauiSubscription';

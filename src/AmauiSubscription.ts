@@ -3,11 +3,11 @@ import copy from '@amaui/utils/copy';
 import Try from '@amaui/utils/try';
 import { TMethod } from '@amaui/models';
 
-interface ISubscribe {
+export interface ISubscribe {
   unsubscribe: () => void;
 }
 
-interface IOptions {
+export interface IOptions {
   emit?: {
     priorValue?: boolean;
 

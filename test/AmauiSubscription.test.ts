@@ -7,7 +7,7 @@ import { evaluate } from '../utils/js/test/utils';
 
 import AmauiSubscription from '../src';
 
-group('@amaui/subscription', () => {
+group('AmauiSubscription', () => {
 
   to('value', async () => {
     const values_ = [
