@@ -1,6 +1,6 @@
 {
   "name": "@amaui/subscription",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Subscription method management",
   "repository": "https://github.com/amaui-org/amaui-subscription.git",
   "author": "Lazar <lazareric2@gmail.com>",

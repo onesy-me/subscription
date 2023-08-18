@@ -35,10 +35,12 @@ const optionsDefault: IOptions = {
   },
 };
 
-export interface IAmauiSubscription {
+export interface IAmauiSubscription<T> {
   methods: Array<TMethod>;
 
-  emit(...args: any[]): void;
+  emit(value: T, ...other: any[]): void;
+  // alias
+  push(value: T, ...other: any[]): void;
 
   subscribe(method: TMethod): void;
   unsubscribe(method: TMethod): void;
@@ -47,7 +49,7 @@ export interface IAmauiSubscription {
   [p: string]: any;
 }
 
-class AmauiSubscription<T = any> implements IAmauiSubscription {
+class AmauiSubscription<T = any> implements IAmauiSubscription<T> {
   public methods: Array<TMethod> = [];
 
   public constructor(
@@ -59,24 +61,24 @@ class AmauiSubscription<T = any> implements IAmauiSubscription {
 
   public get length() { return this.methods.length; }
 
-  public emit(...args: any[]): void {
-    const value = args;
+  public emit(value: T, ...other: any[]): void {
+    const values = [value, ...other];
 
     // Important for use cases,
     // to be available pre emit,
     // Save value as last emitted value as a previous state optionally
-    if (this.options.emit?.priorValue) this.value = value.length === 1 ? value[0] : value;
+    if (this.options.emit?.priorValue) this.value = values.length === 1 ? values[0] : values;
 
     // Pre
     // Value might be of simple type so we have to assign a new value to the value
-    if (is('function', this.options.emit.pre?.method)) this.options.emit.pre.method(...value);
+    if (is('function', this.options.emit.pre?.method)) this.options.emit.pre.method(...values);
 
     // Whether to send a copied value version or not,
     // it might be useful since if value is of reference type,
     // methods in the beginning might update the value,
     // and other following methods wouldn't get the
     // same value as it was sent to the first method.
-    const methodValue = this.options.emit.copy ? copy(value) : value;
+    const methodValue = this.options.emit.copy ? copy(values) : values;
 
     const methods = this.methods.filter(method => is('function', method));
 
@@ -85,8 +87,11 @@ class AmauiSubscription<T = any> implements IAmauiSubscription {
 
     // Post
     // Value might be of simple type so we have to assign a new value to the value
-    if (is('function', this.options.emit.post?.method)) this.options.emit.post.method(...value);
+    if (is('function', this.options.emit.post?.method)) this.options.emit.post.method(...values);
   }
+
+  // alias
+  public push = this.emit;
 
   public forEach(...args: any[]): void {
     this.methods.forEach(method => Try(() => method(...args)));
