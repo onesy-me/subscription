@@ -47,11 +47,11 @@ export interface IAmauiSubscription {
   [p: string]: any;
 }
 
-class AmauiSubscription implements IAmauiSubscription {
+class AmauiSubscription<T = any> implements IAmauiSubscription {
   public methods: Array<TMethod> = [];
 
   public constructor(
-    public value?: any,
+    public value?: T,
     public options: IOptions = {}
   ) {
     this.options = { ...optionsDefault, ...this.options };
