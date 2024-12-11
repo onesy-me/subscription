@@ -1,7 +1,7 @@
-import is from '@amaui/utils/is';
-import copy from '@amaui/utils/copy';
-import Try from '@amaui/utils/try';
-import { TMethod } from '@amaui/models';
+import is from '@onesy/utils/is';
+import copy from '@onesy/utils/copy';
+import Try from '@onesy/utils/try';
+import { TMethod } from '@onesy/models';
 
 export interface ISubscribe {
   unsubscribe: () => void;
@@ -35,7 +35,7 @@ const optionsDefault: IOptions = {
   },
 };
 
-export interface IAmauiSubscription<T> {
+export interface IOnesySubscription<T> {
   methods: Array<TMethod>;
 
   emit(value: T, ...other: any[]): void;
@@ -49,7 +49,7 @@ export interface IAmauiSubscription<T> {
   [p: string]: any;
 }
 
-class AmauiSubscription<T = any> implements IAmauiSubscription<T> {
+class OnesySubscription<T = any> implements IOnesySubscription<T> {
   public methods: Array<TMethod> = [];
 
   public constructor(
@@ -128,4 +128,4 @@ class AmauiSubscription<T = any> implements IAmauiSubscription<T> {
   }
 }
 
-export default AmauiSubscription;
+export default OnesySubscription;

@@ -1,24 +1,24 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
-import { equalDeep } from '@amaui/utils';
+import { equalDeep } from '@onesy/utils';
 
 import { evaluate } from '../utils/js/test/utils';
 
-import AmauiSubscription from '../src';
+import OnesySubscription from '../src';
 
-group('AmauiSubscription', () => {
+group('OnesySubscription', () => {
 
   to('value', async () => {
     const values_ = [
-      new AmauiSubscription().value,
-      new AmauiSubscription('a').value,
+      new OnesySubscription().value,
+      new OnesySubscription('a').value,
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        new window.AmauiSubscription().value,
-        new window.AmauiSubscription('a').value,
+        new window.OnesySubscription().value,
+        new window.OnesySubscription('a').value,
       ];
 
       return values_;
@@ -34,30 +34,30 @@ group('AmauiSubscription', () => {
 
   to('length', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauisubscription = new window.AmauiSubscription();
+      const onesysubscription = new window.OnesySubscription();
 
       const method = (v: any) => v + 1;
       const method1 = (v: any) => v + 1;
       const method2 = (v: any) => v + 1;
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
-      amauisubscription.subscribe(method2);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
+      onesysubscription.subscribe(method2);
 
-      return amauisubscription.length;
+      return onesysubscription.length;
     });
 
-    const amauisubscription = new AmauiSubscription();
+    const onesysubscription = new OnesySubscription();
 
     const method = (v: any) => v + 1;
     const method1 = (v: any) => v + 1;
     const method2 = (v: any) => v + 1;
 
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method1);
-    amauisubscription.subscribe(method2);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method1);
+    onesysubscription.subscribe(method2);
 
-    const valueNode = amauisubscription.length;
+    const valueNode = onesysubscription.length;
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -65,37 +65,37 @@ group('AmauiSubscription', () => {
   });
 
   to('subscribe', async () => {
-    const amauisubscription = new AmauiSubscription();
+    const onesysubscription = new OnesySubscription();
 
     const method = () => { };
     const method1 = () => { };
 
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method1);
-    amauisubscription.subscribe(method1);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method1);
+    onesysubscription.subscribe(method1);
 
     const values_ = [
-      amauisubscription.methods.length,
-      amauisubscription.methods[0] === method && amauisubscription.methods[1] === method1,
+      onesysubscription.methods.length,
+      onesysubscription.methods[0] === method && onesysubscription.methods[1] === method1,
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
-      const amauisubscription = new window.AmauiSubscription();
+      const onesysubscription = new window.OnesySubscription();
 
       const method = () => { };
       const method1 = () => { };
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
-      amauisubscription.subscribe(method1);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
+      onesysubscription.subscribe(method1);
 
       const values_ = [
-        amauisubscription.methods.length,
-        amauisubscription.methods[0] === method && amauisubscription.methods[1] === method1,
+        onesysubscription.methods.length,
+        onesysubscription.methods[0] === method && onesysubscription.methods[1] === method1,
       ];
 
       return values_;
@@ -110,45 +110,45 @@ group('AmauiSubscription', () => {
   });
 
   to('unsubscribe', async () => {
-    const amauisubscription = new AmauiSubscription();
+    const onesysubscription = new OnesySubscription();
 
     const method = () => { };
     const method1 = () => { };
     const method4 = () => { };
 
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method);
 
-    amauisubscription.subscribe(method4);
+    onesysubscription.subscribe(method4);
 
-    amauisubscription.unsubscribe(method);
-    amauisubscription.unsubscribe(method1);
+    onesysubscription.unsubscribe(method);
+    onesysubscription.unsubscribe(method1);
 
     const values_ = [
-      amauisubscription.methods.length,
-      amauisubscription.methods[0] === method4,
+      onesysubscription.methods.length,
+      onesysubscription.methods[0] === method4,
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
-      const amauisubscription = new window.AmauiSubscription();
+      const onesysubscription = new window.OnesySubscription();
 
       const method = () => { };
       const method1 = () => { };
       const method4 = () => { };
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method);
 
-      amauisubscription.subscribe(method4);
+      onesysubscription.subscribe(method4);
 
-      amauisubscription.unsubscribe(method);
-      amauisubscription.unsubscribe(method1);
+      onesysubscription.unsubscribe(method);
+      onesysubscription.unsubscribe(method1);
 
       const values_ = [
-        amauisubscription.methods.length,
-        amauisubscription.methods[0] === method4,
+        onesysubscription.methods.length,
+        onesysubscription.methods[0] === method4,
       ];
 
       return values_;
@@ -163,7 +163,7 @@ group('AmauiSubscription', () => {
   });
 
   to('emit', async () => {
-    const amauisubscription = new AmauiSubscription();
+    const onesysubscription = new OnesySubscription();
 
     const value = [];
     const value1 = [];
@@ -171,13 +171,13 @@ group('AmauiSubscription', () => {
     const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
     const method1 = (...v: any) => value1.push(v.length <= 1 ? v[0] : v);
 
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method1);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method1);
 
-    amauisubscription.emit();
-    amauisubscription.emit([1, 4, 'a']);
-    amauisubscription.emit(4);
-    amauisubscription.emit(1, 4, 40);
+    onesysubscription.emit();
+    onesysubscription.emit([1, 4, 'a']);
+    onesysubscription.emit(4);
+    onesysubscription.emit(1, 4, 40);
 
     const values_ = [
       value,
@@ -185,7 +185,7 @@ group('AmauiSubscription', () => {
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
-      const amauisubscription = new window.AmauiSubscription();
+      const onesysubscription = new window.OnesySubscription();
 
       const value = [];
       const value1 = [];
@@ -193,17 +193,17 @@ group('AmauiSubscription', () => {
       const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
       const method1 = (...v: any) => value1.push(v.length <= 1 ? v[0] : v);
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
 
-      amauisubscription.emit();
-      amauisubscription.emit([1, 4, 'a']);
-      amauisubscription.emit(4);
-      amauisubscription.emit(1, 4, 40);
+      onesysubscription.emit();
+      onesysubscription.emit([1, 4, 'a']);
+      onesysubscription.emit(4);
+      onesysubscription.emit(1, 4, 40);
 
       const values_ = [
         value,
-        window.AmauiUtils.equalDeep(value, value1),
+        window.OnesyUtils.equalDeep(value, value1),
       ];
 
       return values_;
@@ -231,17 +231,17 @@ group('AmauiSubscription', () => {
   });
 
   to('forEach', async () => {
-    const amauisubscription = new AmauiSubscription();
+    const onesysubscription = new OnesySubscription();
 
     const value = [1];
 
     const method = (v: any) => v[0]++;
     const method1 = (v: any) => v[0]++;
 
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method1);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method1);
 
-    const forEach = amauisubscription.forEach(value);
+    const forEach = onesysubscription.forEach(value);
 
     const values_ = [
       value,
@@ -249,17 +249,17 @@ group('AmauiSubscription', () => {
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
-      const amauisubscription = new window.AmauiSubscription();
+      const onesysubscription = new window.OnesySubscription();
 
       const value = [1];
 
       const method = (v: any) => v[0]++;
       const method1 = (v: any) => v[0]++;
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
 
-      const forEach = amauisubscription.forEach(value);
+      const forEach = onesysubscription.forEach(value);
 
       const values_ = [
         value,
@@ -279,28 +279,28 @@ group('AmauiSubscription', () => {
 
   to('map', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      const amauisubscription = new window.AmauiSubscription();
+      const onesysubscription = new window.OnesySubscription();
 
       const method = (v: any) => v + 1;
       const method1 = (v: any) => v + 1;
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
 
-      const values_ = amauisubscription.map(1);
+      const values_ = onesysubscription.map(1);
 
       return values_;
     });
 
-    const amauisubscription = new AmauiSubscription();
+    const onesysubscription = new OnesySubscription();
 
     const method = (v: any) => v + 1;
     const method1 = (v: any) => v + 1;
 
-    amauisubscription.subscribe(method);
-    amauisubscription.subscribe(method1);
+    onesysubscription.subscribe(method);
+    onesysubscription.subscribe(method1);
 
-    const values_ = amauisubscription.map(1);
+    const values_ = onesysubscription.map(1);
 
     const valueNode = values_;
 
@@ -313,17 +313,17 @@ group('AmauiSubscription', () => {
 
     to('forEach', async () => {
       const valueBrowsers = await evaluate((window: any) => {
-        const amauisubscription = new window.AmauiSubscription();
+        const onesysubscription = new window.OnesySubscription();
 
         const value = [1];
 
         const method = (v: any) => v[0]++;
         const method1 = () => { throw new Error('a'); };
 
-        amauisubscription.subscribe(method);
-        amauisubscription.subscribe(method1);
+        onesysubscription.subscribe(method);
+        onesysubscription.subscribe(method1);
 
-        const forEach = amauisubscription.forEach(value);
+        const forEach = onesysubscription.forEach(value);
 
         const values_ = [
           value,
@@ -333,17 +333,17 @@ group('AmauiSubscription', () => {
         return values_;
       });
 
-      const amauisubscription = new AmauiSubscription();
+      const onesysubscription = new OnesySubscription();
 
       const value = [1];
 
       const method = (v: any) => v[0]++;
       const method1 = () => { throw new Error('a'); };
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
 
-      const forEach = amauisubscription.forEach(value);
+      const forEach = onesysubscription.forEach(value);
 
       const values_ = [
         value,
@@ -362,28 +362,28 @@ group('AmauiSubscription', () => {
 
     to('map', async () => {
       const valueBrowsers = await evaluate((window: any) => {
-        const amauisubscription = new window.AmauiSubscription();
+        const onesysubscription = new window.OnesySubscription();
 
         const method = (v: any) => v + 1;
         const method1 = () => { throw new Error('a'); };
 
-        amauisubscription.subscribe(method);
-        amauisubscription.subscribe(method1);
+        onesysubscription.subscribe(method);
+        onesysubscription.subscribe(method1);
 
-        const values_ = amauisubscription.map(1);
+        const values_ = onesysubscription.map(1);
 
         return values_;
       });
 
-      const amauisubscription = new AmauiSubscription();
+      const onesysubscription = new OnesySubscription();
 
       const method = (v: any) => v + 1;
       const method1 = () => { throw new Error('a'); };
 
-      amauisubscription.subscribe(method);
-      amauisubscription.subscribe(method1);
+      onesysubscription.subscribe(method);
+      onesysubscription.subscribe(method1);
 
-      const values_ = amauisubscription.map(1);
+      const values_ = onesysubscription.map(1);
 
       const valueNode = values_;
 
@@ -399,7 +399,7 @@ group('AmauiSubscription', () => {
     group('emit', () => {
 
       to('priorValue', async () => {
-        const amauisubscription = new AmauiSubscription(undefined, { emit: { priorValue: false } });
+        const onesysubscription = new OnesySubscription(undefined, { emit: { priorValue: false } });
 
         const value = [];
 
@@ -407,22 +407,22 @@ group('AmauiSubscription', () => {
 
         const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
 
-        amauisubscription.subscribe(method);
+        onesysubscription.subscribe(method);
 
-        amauisubscription.emit(v);
+        onesysubscription.emit(v);
 
         const values_ = [];
 
-        values_.push(amauisubscription.value === undefined);
+        values_.push(onesysubscription.value === undefined);
 
-        amauisubscription.options.emit.priorValue = true;
+        onesysubscription.options.emit.priorValue = true;
 
-        amauisubscription.emit(v);
+        onesysubscription.emit(v);
 
-        values_.push(amauisubscription.value === v);
+        values_.push(onesysubscription.value === v);
 
         const valueBrowsers = await evaluate((window: any) => {
-          const amauisubscription = new window.AmauiSubscription(undefined, { emit: { priorValue: false } });
+          const onesysubscription = new window.OnesySubscription(undefined, { emit: { priorValue: false } });
 
           const value = [];
 
@@ -430,19 +430,19 @@ group('AmauiSubscription', () => {
 
           const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
 
-          amauisubscription.subscribe(method);
+          onesysubscription.subscribe(method);
 
-          amauisubscription.emit(v);
+          onesysubscription.emit(v);
 
           const values_ = [];
 
-          values_.push(amauisubscription.value === undefined);
+          values_.push(onesysubscription.value === undefined);
 
-          amauisubscription.options.emit.priorValue = true;
+          onesysubscription.options.emit.priorValue = true;
 
-          amauisubscription.emit(v);
+          onesysubscription.emit(v);
 
-          values_.push(amauisubscription.value === v);
+          values_.push(onesysubscription.value === v);
 
           return values_;
         });
@@ -456,7 +456,7 @@ group('AmauiSubscription', () => {
       });
 
       to('copy', async () => {
-        const amauisubscription = new AmauiSubscription(undefined, { emit: { copy: true } });
+        const onesysubscription = new OnesySubscription(undefined, { emit: { copy: true } });
 
         const value = [];
 
@@ -464,13 +464,13 @@ group('AmauiSubscription', () => {
 
         const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
 
-        amauisubscription.subscribe(method);
+        onesysubscription.subscribe(method);
 
-        amauisubscription.emit(v);
+        onesysubscription.emit(v);
 
-        amauisubscription.options.emit.copy = false;
+        onesysubscription.options.emit.copy = false;
 
-        amauisubscription.emit(v);
+        onesysubscription.emit(v);
 
         const values_ = [
           value[0] !== v,
@@ -478,7 +478,7 @@ group('AmauiSubscription', () => {
         ];
 
         const valueBrowsers = await evaluate((window: any) => {
-          const amauisubscription = new window.AmauiSubscription(undefined, { emit: { copy: true } });
+          const onesysubscription = new window.OnesySubscription(undefined, { emit: { copy: true } });
 
           const value = [];
 
@@ -486,13 +486,13 @@ group('AmauiSubscription', () => {
 
           const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
 
-          amauisubscription.subscribe(method);
+          onesysubscription.subscribe(method);
 
-          amauisubscription.emit(v);
+          onesysubscription.emit(v);
 
-          amauisubscription.options.emit.copy = false;
+          onesysubscription.options.emit.copy = false;
 
-          amauisubscription.emit(v);
+          onesysubscription.emit(v);
 
           const values_ = [
             value[0] !== v,
@@ -515,7 +515,7 @@ group('AmauiSubscription', () => {
     group('pre', () => {
 
       to('method', async () => {
-        const amauisubscription = new AmauiSubscription();
+        const onesysubscription = new OnesySubscription();
 
         const value = [];
 
@@ -524,11 +524,11 @@ group('AmauiSubscription', () => {
         const preMethod = (...v: any) => value.push(4, v.length <= 1 ? v[0] : v);
         const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
 
-        amauisubscription.options.emit.pre.method = preMethod;
+        onesysubscription.options.emit.pre.method = preMethod;
 
-        amauisubscription.subscribe(method);
+        onesysubscription.subscribe(method);
 
-        amauisubscription.emit(v);
+        onesysubscription.emit(v);
 
         const values_ = [
           equalDeep([
@@ -539,7 +539,7 @@ group('AmauiSubscription', () => {
         ];
 
         const valueBrowsers = await evaluate((window: any) => {
-          const amauisubscription = new window.AmauiSubscription();
+          const onesysubscription = new window.OnesySubscription();
 
           const value = [];
 
@@ -548,14 +548,14 @@ group('AmauiSubscription', () => {
           const preMethod = (...v: any) => value.push(4, v.length <= 1 ? v[0] : v);
           const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
 
-          amauisubscription.options.emit.pre.method = preMethod;
+          onesysubscription.options.emit.pre.method = preMethod;
 
-          amauisubscription.subscribe(method);
+          onesysubscription.subscribe(method);
 
-          amauisubscription.emit(v);
+          onesysubscription.emit(v);
 
           const values_ = [
-            window.AmauiUtils.equalDeep([
+            window.OnesyUtils.equalDeep([
               4,
               v,
               v,
@@ -577,7 +577,7 @@ group('AmauiSubscription', () => {
     group('post', () => {
 
       to('method', async () => {
-        const amauisubscription = new AmauiSubscription();
+        const onesysubscription = new OnesySubscription();
 
         const value = [];
 
@@ -586,11 +586,11 @@ group('AmauiSubscription', () => {
         const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
         const postMethod = (...v: any) => value.push(v.length <= 1 ? v[0] : v, 4);
 
-        amauisubscription.options.emit.post.method = postMethod;
+        onesysubscription.options.emit.post.method = postMethod;
 
-        amauisubscription.subscribe(method);
+        onesysubscription.subscribe(method);
 
-        amauisubscription.emit(v);
+        onesysubscription.emit(v);
 
         const values_ = [
           equalDeep([
@@ -601,7 +601,7 @@ group('AmauiSubscription', () => {
         ];
 
         const valueBrowsers = await evaluate((window: any) => {
-          const amauisubscription = new window.AmauiSubscription();
+          const onesysubscription = new window.OnesySubscription();
 
           const value = [];
 
@@ -610,14 +610,14 @@ group('AmauiSubscription', () => {
           const method = (...v: any) => value.push(v.length <= 1 ? v[0] : v);
           const postMethod = (...v: any) => value.push(v.length <= 1 ? v[0] : v, 4);
 
-          amauisubscription.options.emit.post.method = postMethod;
+          onesysubscription.options.emit.post.method = postMethod;
 
-          amauisubscription.subscribe(method);
+          onesysubscription.subscribe(method);
 
-          amauisubscription.emit(v);
+          onesysubscription.emit(v);
 
           const values_ = [
-            window.AmauiUtils.equalDeep([
+            window.OnesyUtils.equalDeep([
               v,
               v,
               4,

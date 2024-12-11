@@ -4,11 +4,11 @@
 
 <p align='center'>
   <a target='_blank' rel='noopener noreferrer' href='#'>
-    <img src='utils/images/logo.svg' alt='amaui logo' />
+    <img src='utils/images/logo.svg' alt='onesy logo' />
   </a>
 </p>
 
-<h1 align='center'>amaui Subscription</h1>
+<h1 align='center'>onesy Subscription</h1>
 
 <p align='center'>
   Subscription methods management
@@ -39,20 +39,20 @@
 ### Add
 
 ```sh
-yarn add @amaui/subscription
+yarn add @onesy/subscription
 ```
 
 ### Use
 
 ```javascript
-  import AmauiSubscription from '@amaui/subscription';
+  import OnesySubscription from '@onesy/subscription';
 
   // Make a new subscription instance
   // with an optional initial value
-  const amauiSub = new AmauiSubscription('🙂');
+  const onesySub = new OnesySubscription('🙂');
 
   // Value
-  amauiSub.value;
+  onesySub.value;
 
   // '🙂'
 
@@ -61,13 +61,13 @@ yarn add @amaui/subscription
   const method1 = value => console.log('Yup, I got it as well ', value);
 
   // Methods subscribe
-  amauiSub.subscribe(method);
+  onesySub.subscribe(method);
 
-  amauiSub.subscribe(method1);
+  onesySub.subscribe(method1);
 
   // Emit a value to all subscribed methods
   // a value always emitted as arguments received by emit method
-  amauiSub.emit('🌱', '🌱', '🌱', '🌱');
+  onesySub.emit('🌱', '🌱', '🌱', '🌱');
 
   // method, log:
   // Yup, I got it 🌱 🌱 🌱 🌱
@@ -76,12 +76,12 @@ yarn add @amaui/subscription
   // Yup, I got it as well 🌱
 
   // Methods unsubscribe
-  amauiSub.unsubscribe(method);
+  onesySub.unsubscribe(method);
 
-  amauiSub.unsubscribe(method1);
+  onesySub.unsubscribe(method1);
 
   // or with anonymous method
-  const subscription = amauiSub.subscribe(value => console.log(value));
+  const subscription = onesySub.subscribe(value => console.log(value));
 
   subscription.unsubscribe();
 ```
