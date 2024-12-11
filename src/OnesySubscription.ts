@@ -7,6 +7,7 @@ export interface ISubscribe {
   unsubscribe: () => void;
 }
 
+
 export interface IOptions {
   emit?: {
     priorValue?: boolean;

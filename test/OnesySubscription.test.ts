@@ -174,7 +174,7 @@ group('OnesySubscription', () => {
     onesysubscription.subscribe(method);
     onesysubscription.subscribe(method1);
 
-    onesysubscription.emit();
+    onesysubscription.emit(null);
     onesysubscription.emit([1, 4, 'a']);
     onesysubscription.emit(4);
     onesysubscription.emit(1, 4, 40);
